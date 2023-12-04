@@ -28,4 +28,8 @@ public class UserService {
     public User getUserBy (Integer userId) {
         return userRepository.getUserBy(userId);
     }
+
+    public void saveUser(User user) {
+        userRepository.save(user);
+    }
 }
