@@ -24,4 +24,8 @@ public class UserService {
         boolean usernameExists = userRepository.userExistsBy(username);
         ValidationService.validateUsernameIsAvailable(usernameExists);
     }
+
+    public User getUserBy (Integer userId) {
+        return userRepository.getUserBy(userId);
+    }
 }

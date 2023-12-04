@@ -34,7 +34,7 @@ CREATE TABLE profile (
                          id serial  NOT NULL,
                          user_id int  NOT NULL,
                          cover_id int  NULL,
-                         image_id int  NULL,
+                         avatar_id int  NULL,
                          CONSTRAINT profile_pk PRIMARY KEY (id)
 );
 
@@ -99,7 +99,7 @@ ALTER TABLE profile ADD CONSTRAINT profile_cover_image
 
 -- Reference: profile_image (table: profile)
 ALTER TABLE profile ADD CONSTRAINT profile_image
-    FOREIGN KEY (image_id)
+    FOREIGN KEY (avatar_id)
         REFERENCES image (id)
         NOT DEFERRABLE
             INITIALLY IMMEDIATE
