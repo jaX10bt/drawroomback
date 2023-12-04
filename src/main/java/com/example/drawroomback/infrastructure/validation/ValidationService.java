@@ -16,4 +16,9 @@ public class ValidationService {
         return optionalUser.get();
     }
 
+    public static void validateUsernameIsAvailable(boolean usernameExists) {
+        if (usernameExists) {
+            throw new BusinessException(USERNAME_UNAVAILABLE.getMessage(), USERNAME_UNAVAILABLE.getErrorCode());
+        }
+    }
 }
