@@ -1,6 +1,8 @@
 package com.example.drawroomback.business.users;
 
 import com.example.drawroomback.business.Status;
+import com.example.drawroomback.domain.profile.Profile;
+import com.example.drawroomback.domain.profile.ProfileService;
 import com.example.drawroomback.domain.role.RoleService;
 import com.example.drawroomback.domain.user.User;
 import com.example.drawroomback.domain.user.UserService;
@@ -15,6 +17,9 @@ public class UsersService {
     private UserService userService;
 
     @Resource
+    private ProfileService profileService;
+
+    @Resource
     private RoleService roleService;
 
     @Transactional
@@ -22,7 +27,14 @@ public class UsersService {
         userService.validateUsernameIsAvailable(username);
         User user = createUser(username, password);
         userService.saveUser(user);
-        // TODO: lisada profile koos useriga
+        Profile profile = createProfile(user);
+        profileService.saveProfile(profile);
+    }
+
+    private Profile createProfile(User user) {
+        Profile profile = new Profile();
+        profile.setUser(user);
+        return profile;
     }
 
     private User createUser(String username, String password) {

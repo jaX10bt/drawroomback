@@ -19,7 +19,6 @@ public class UserService {
         return user;
     }
 
-
     public void validateUsernameIsAvailable(String username) {
         boolean usernameExists = userRepository.userExistsBy(username);
         ValidationService.validateUsernameIsAvailable(usernameExists);

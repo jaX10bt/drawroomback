@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping
 public class ProfilesController {
 
-   @Resource
-    private ProfilesService profileService;
-
+//   @Resource
+//    private ProfilesService profileService;
+//
 //   @PutMapping("/profile")
 //   public void getUserProfile(@RequestParam Integer userId) {
 //       return profileService.getUserProfile(userId);

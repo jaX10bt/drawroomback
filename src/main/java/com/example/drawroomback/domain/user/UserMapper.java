@@ -10,5 +10,5 @@ public interface UserMapper {
     @Mapping(source = "role.name", target = "roleName")
     LoginResponse toLoginResponse(User user);
 
-    void toProfileInfo(Integer userId);
+//    void toProfileInfo(Integer userId);
 }

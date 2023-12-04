@@ -6,12 +6,12 @@ import jakarta.annotation.Resource;
 
 public class ProfilesService {
 
-    @Resource
-    private UserService userService;
+//    @Resource
+//    private UserService userService;
 
 
-    public ProfileInfo getUserProfile(Integer userId) {
-        User user = userService.getUserBy(userId);
-
-    }
+//    public ProfileInfo getUserProfile(Integer userId) {
+//        User user = userService.getUserBy(userId);
+//
+//    }
 }
