@@ -12,4 +12,8 @@ public class ProfileService {
     public void saveProfile(Profile profile) {
         profileRepository.save(profile);
     }
+
+    public Profile findProfileBy(Integer profileId) {
+        return profileRepository.getReferenceById(profileId);
+    }
 }

@@ -7,8 +7,8 @@ import com.example.drawroomback.domain.role.RoleService;
 import com.example.drawroomback.domain.user.User;
 import com.example.drawroomback.domain.user.UserService;
 import jakarta.annotation.Resource;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UsersService {
