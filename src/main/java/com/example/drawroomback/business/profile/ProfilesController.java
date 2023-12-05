@@ -1,6 +1,6 @@
 package com.example.drawroomback.business.profile;
 
-import com.example.drawroomback.business.profile.dto.ProfileInfo;
+import com.example.drawroomback.business.profile.dto.ProfileImageInfo;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +11,7 @@ public class ProfilesController {
     private ProfilesService profilesService;
 
     @PatchMapping("/profile")
-    public void editProfileImages(@RequestBody ProfileInfo profileInfo) {
-        profilesService.editProfileImages(profileInfo);
+    public void editProfileImages(@RequestParam Integer userId, @RequestBody ProfileImageInfo profileImageInfo) {
+        profilesService.editProfileImages(userId, profileImageInfo);
     }
 }

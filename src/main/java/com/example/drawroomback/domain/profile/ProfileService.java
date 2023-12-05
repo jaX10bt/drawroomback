@@ -13,7 +13,7 @@ public class ProfileService {
         profileRepository.save(profile);
     }
 
-    public Profile findProfileBy(Integer profileId) {
-        return profileRepository.getReferenceById(profileId);
+    public Profile getProfileBy(Integer userId) {
+        return profileRepository.getProfileBy(userId);
     }
 }

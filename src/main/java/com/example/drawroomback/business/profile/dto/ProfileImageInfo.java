@@ -12,10 +12,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProfileInfo implements Serializable {
-    private Integer profileId;
-    private Integer coverId;
+public class ProfileImageInfo implements Serializable {
     private String coverData;
-    private Integer avatarId;
     private String avatarData;
 }
