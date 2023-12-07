@@ -5,6 +5,7 @@ import com.example.drawroomback.infrastructure.validation.ValidationService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,11 +25,11 @@ public class UserService {
         ValidationService.validateUsernameIsAvailable(usernameExists);
     }
 
-    public User getUserBy (Integer userId) {
-        return userRepository.getUserBy(userId);
-    }
-
     public void saveUser(User user) {
         userRepository.save(user);
+    }
+
+    public List<User> findAllActiveUsers() {
+        return userRepository.findUsersBy(Status.ACTIVE);
     }
 }
