@@ -7,4 +7,8 @@ public interface ProfileRepository extends JpaRepository<Profile, Integer> {
     @Query("select p from Profile p where p.user.id = ?1")
     Profile getProfileBy(Integer userId);
 
+    @Query("select p from Profile p where p.id = ?1")
+    Profile getProfileInfoBy(Integer id);
+
+
 }

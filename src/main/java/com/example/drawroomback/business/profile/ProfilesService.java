@@ -1,9 +1,11 @@
 package com.example.drawroomback.business.profile;
 
 import com.example.drawroomback.business.profile.dto.ProfileImageInfo;
+import com.example.drawroomback.business.profile.dto.info.ProfileInfo;
 import com.example.drawroomback.domain.image.Image;
 import com.example.drawroomback.domain.image.ImageService;
 import com.example.drawroomback.domain.profile.Profile;
+import com.example.drawroomback.domain.profile.ProfileMapper;
 import com.example.drawroomback.domain.profile.ProfileService;
 import com.example.drawroomback.util.ImageConverter;
 import jakarta.annotation.Resource;
@@ -16,6 +18,10 @@ public class ProfilesService {
     private ProfileService profileService;
     @Resource
     private ImageService imageService;
+
+    @Resource
+    private ProfileMapper profileMapper;
+
 
     @Transactional
     public void editProfileImages(Integer userId, ProfileImageInfo profileImageInfo) {
@@ -96,4 +102,10 @@ public class ProfilesService {
         return imageData != null && !imageData.isEmpty();
     }
 
+    public ProfileInfo getProfileInfo(Integer userId) {
+
+        Profile profile = profileService.getProfileBy(userId);
+        return profileMapper.toProfileInfo(profile);
+
+    }
 }

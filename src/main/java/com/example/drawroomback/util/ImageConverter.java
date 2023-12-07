@@ -1,6 +1,7 @@
 package com.example.drawroomback.util;
 
 import com.example.drawroomback.domain.image.Image;
+import jakarta.validation.constraints.NotNull;
 
 import java.nio.charset.StandardCharsets;
 
@@ -19,5 +20,26 @@ public class ImageConverter {
         Image image = new Image();
         image.setData(stringToByteArray(imageData));
         return image;
+    }
+
+    public static String imageToString(Image image) {
+        if (image == null) {
+            return "";
+        }
+
+        byte[] bytes = image.getData();
+        if (bytes == null) {
+            return "";
+        }
+        return byteArrayToString(bytes);
+
+
+    }
+
+    public static String byteArrayToString(byte[] bytes) {
+        if (bytes == null) {
+            return "";
+        }
+        return new String(bytes, StandardCharsets.UTF_8);
     }
 }

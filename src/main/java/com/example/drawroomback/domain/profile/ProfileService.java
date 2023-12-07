@@ -16,4 +16,6 @@ public class ProfileService {
     public Profile getProfileBy(Integer userId) {
         return profileRepository.getProfileBy(userId);
     }
+
+
 }
