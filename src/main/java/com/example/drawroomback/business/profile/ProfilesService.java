@@ -1,7 +1,6 @@
 package com.example.drawroomback.business.profile;
 
-import com.example.drawroomback.business.profile.dto.ProfileImageInfo;
-import com.example.drawroomback.business.profile.dto.info.ProfileInfo;
+import com.example.drawroomback.business.profile.dto.ProfileInfo;
 import com.example.drawroomback.domain.image.Image;
 import com.example.drawroomback.domain.image.ImageService;
 import com.example.drawroomback.domain.profile.Profile;
@@ -24,21 +23,21 @@ public class ProfilesService {
 
 
     @Transactional
-    public void editProfileImages(Integer userId, ProfileImageInfo profileImageInfo) {
-        Profile profile = profileService.getProfileBy(userId);
-        handleImagesUpdate(profileImageInfo, profile);
-        handleNewImages(profileImageInfo, profile);
+    public void editProfileImages(ProfileInfo profileInfo) {
+        Profile profile = profileService.getProfileBy(profileInfo.getProfileUserId());
+        handleImagesUpdate(profileInfo, profile);
+        handleNewImages(profileInfo, profile);
     }
 
-    private void handleImagesUpdate(ProfileImageInfo profileImageInfo, Profile profile) {
-        handleAvatarUpdate(profileImageInfo, profile);
-        handleCoverUpdate(profileImageInfo, profile);
+    private void handleImagesUpdate(ProfileInfo profileInfo, Profile profile) {
+        handleAvatarUpdate(profileInfo, profile);
+        handleCoverUpdate(profileInfo, profile);
         profileService.saveProfile(profile);
     }
 
-    private void handleAvatarUpdate(ProfileImageInfo profileImageInfo, Profile profile) {
+    private void handleAvatarUpdate(ProfileInfo profileInfo, Profile profile) {
         if (hasAvatar(profile)) {
-            byte[] avatarAsBytes = ImageConverter.stringToByteArray(profileImageInfo.getAvatarData());
+            byte[] avatarAsBytes = ImageConverter.stringToByteArray(profileInfo.getAvatarData());
             Image avatar = profile.getAvatar();
             avatar.setData(avatarAsBytes);
             imageService.saveImage(avatar);
@@ -46,9 +45,9 @@ public class ProfilesService {
         }
     }
 
-    private void handleCoverUpdate(ProfileImageInfo profileImageInfo, Profile profile) {
+    private void handleCoverUpdate(ProfileInfo profileInfo, Profile profile) {
         if (hasCover(profile)) {
-            byte[] coverAsBytes = ImageConverter.stringToByteArray(profileImageInfo.getCoverData());
+            byte[] coverAsBytes = ImageConverter.stringToByteArray(profileInfo.getCoverData());
             Image cover = profile.getCover();
             cover.setData(coverAsBytes);
             imageService.saveImage(cover);
@@ -64,31 +63,31 @@ public class ProfilesService {
         return profile.getCover() != null;
     }
 
-    private void handleNewImages(ProfileImageInfo profileImageInfo, Profile profile) {
-        handleNewAvatar(profileImageInfo, profile);
-        handleNewCover(profileImageInfo, profile);
+    private void handleNewImages(ProfileInfo profileInfo, Profile profile) {
+        handleNewAvatar(profileInfo, profile);
+        handleNewCover(profileInfo, profile);
     }
 
-    private void handleNewAvatar(ProfileImageInfo profileImageInfo, Profile profile) {
-        if (newAvatarIsRequired(profileImageInfo, profile)) {
-            Image avatar = ImageConverter.stringToImage(profileImageInfo.getAvatarData());
+    private void handleNewAvatar(ProfileInfo profileInfo, Profile profile) {
+        if (newAvatarIsRequired(profileInfo, profile)) {
+            Image avatar = ImageConverter.stringToImage(profileInfo.getAvatarData());
             imageService.saveImage(avatar);
         }
     }
 
-    private void handleNewCover(ProfileImageInfo profileImageInfo, Profile profile) {
-        if (newCoverIsRequired(profileImageInfo, profile)) {
-            Image cover = ImageConverter.stringToImage(profileImageInfo.getCoverData());
+    private void handleNewCover(ProfileInfo profileInfo, Profile profile) {
+        if (newCoverIsRequired(profileInfo, profile)) {
+            Image cover = ImageConverter.stringToImage(profileInfo.getCoverData());
             imageService.saveImage(cover);
         }
     }
 
-    private static boolean newAvatarIsRequired(ProfileImageInfo profileImageInfo, Profile profile) {
-        return !imageDataExists(profile.getAvatar()) && imageDataExists(profileImageInfo.getAvatarData());
+    private static boolean newAvatarIsRequired(ProfileInfo profileInfo, Profile profile) {
+        return !imageDataExists(profile.getAvatar()) && imageDataExists(profileInfo.getAvatarData());
     }
 
-    private static boolean newCoverIsRequired(ProfileImageInfo profileImageInfo, Profile profile) {
-        return !imageDataExists(profile.getCover()) && imageDataExists(profileImageInfo.getCoverData());
+    private static boolean newCoverIsRequired(ProfileInfo profileInfo, Profile profile) {
+        return !imageDataExists(profile.getCover()) && imageDataExists(profileInfo.getCoverData());
     }
 
     private static boolean imageDataExists(Image image) {
