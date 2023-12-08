@@ -33,7 +33,4 @@ public class UsersController {
         return usersService.findAllActiveUsers();
 
     }
-
-
-
 }

@@ -72,6 +72,7 @@ public class ProfilesService {
         if (newAvatarIsRequired(profileInfo, profile)) {
             Image avatar = ImageConverter.stringToImage(profileInfo.getAvatarData());
             imageService.saveImage(avatar);
+            profile.setAvatar(avatar);
         }
     }
 
@@ -79,6 +80,7 @@ public class ProfilesService {
         if (newCoverIsRequired(profileInfo, profile)) {
             Image cover = ImageConverter.stringToImage(profileInfo.getCoverData());
             imageService.saveImage(cover);
+            profile.setCover(cover);
         }
     }
 
