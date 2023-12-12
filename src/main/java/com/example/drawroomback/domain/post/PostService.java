@@ -19,8 +19,8 @@ public class PostService {
         return postRepository.getRandomPost();
     }
 
-    public Page<Post> getPostsPage(Integer postId, Pageable pagination) {
-        return postRepository.getActivePostsBy(postId, Status.ACTIVE, pagination);
+    public Page<Post> getPostsPage(Pageable pagination) {
+        return postRepository.getActivePostsBy(Status.ACTIVE, pagination);
     }
 
     public void saveNewPost(Post post) {

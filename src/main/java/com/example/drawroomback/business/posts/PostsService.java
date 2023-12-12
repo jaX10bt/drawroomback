@@ -67,8 +67,8 @@ public class PostsService {
         return image;
     }
 
-    public PostInfoResponse getPosts(Integer postId, Pageable pageable) {
-        Page<Post> postsPage = postService.getPostsPage(postId, pageable);
+    public PostInfoResponse getPosts(Pageable pageable) {
+        Page<Post> postsPage = postService.getPostsPage(pageable);
         return getPostInfoResponse(postsPage);
     }
 
