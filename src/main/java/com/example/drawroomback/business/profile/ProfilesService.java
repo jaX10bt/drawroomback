@@ -1,6 +1,7 @@
 package com.example.drawroomback.business.profile;
 
 import com.example.drawroomback.business.profile.dto.ProfileInfo;
+import com.example.drawroomback.business.profile.dto.UserProfileInfo;
 import com.example.drawroomback.domain.image.Image;
 import com.example.drawroomback.domain.image.ImageService;
 import com.example.drawroomback.domain.profile.Profile;
@@ -104,9 +105,13 @@ public class ProfilesService {
     }
 
     public ProfileInfo getProfileInfo(Integer userId) {
-
         Profile profile = profileService.getProfileBy(userId);
         return profileMapper.toProfileInfo(profile);
+    }
 
+
+    public UserProfileInfo getUserProfileInfo(Integer userId) {
+        Profile profile = profileService.getProfileBy(userId);
+        return profileMapper.toUserProfileInfo(profile);
     }
 }

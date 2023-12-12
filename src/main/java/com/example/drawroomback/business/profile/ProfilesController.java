@@ -1,6 +1,7 @@
 package com.example.drawroomback.business.profile;
 
 import com.example.drawroomback.business.profile.dto.ProfileInfo;
+import com.example.drawroomback.business.profile.dto.UserProfileInfo;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,13 @@ public class ProfilesController {
     @Operation(summary = "Tagastab userId abil kasutaja avatar ja cover image.")
     public ProfileInfo getProfileInfo(@RequestParam Integer userId) {
         return profilesService.getProfileInfo(userId);
+
+    }
+
+    @GetMapping("/profile/other")
+    @Operation(summary = "Tagastab userId abil kasutaja avatari, cover image ja username.")
+    public UserProfileInfo getUserProfileInfo(@RequestParam Integer userId) {
+        return profilesService.getUserProfileInfo(userId);
     }
 
     @PatchMapping("/profile")
