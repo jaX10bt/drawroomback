@@ -1,21 +1,37 @@
 package com.example.drawroomback.domain.post;
 
 import com.example.drawroomback.business.posts.dto.PostInfo;
+import com.example.drawroomback.domain.image.Image;
+import com.example.drawroomback.util.ImageConverter;
+import com.example.drawroomback.util.InstantConverter;
 import org.mapstruct.*;
+
+import java.time.Instant;
+import java.util.List;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface PostMapper {
-    @Mapping(source = "imageData", target = "image.data")
-    @Mapping(source = "imageId", target = "image.id")
-    @Mapping(source = "userUsername", target = "user.username")
-    @Mapping(source = "userId", target = "user.id")
-    @Mapping(source = "postId", target = "id")
-    Post toEntity(PostInfo postInfo);
 
-    @InheritInverseConfiguration(name = "toEntity")
-    PostInfo toDto(Post post);
+    //     @Mapping(source = "", target = "userAvatarImageData")
 
-    @InheritConfiguration(name = "toEntity")
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    Post partialUpdate(PostInfo postInfo, @MappingTarget Post post);
+    @Mapping(source = "user.id", target = "userId")
+    @Mapping(source = "user.username", target = "username")
+    @Mapping(source = "image", target = "postImageData", qualifiedByName = "imageToString")
+    @Mapping(source = "timestamp", target = "timestamp", qualifiedByName = "instantToString")
+    @Mapping(source = "likeCount", target = "likeCount")
+    PostInfo toPostInfo(Post post);
+
+    List<PostInfo> toPostInfos(List<Post> posts);
+
+    @Named("imageToString")
+    static String imageToString(Image image) {
+        return ImageConverter.imageToString(image);
+    }
+
+    @Named("instantToString")
+    static String instantToString(Instant instant) {
+        return InstantConverter.instantToString(instant);
+    }
+
+
 }

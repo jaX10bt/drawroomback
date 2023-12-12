@@ -1,26 +1,23 @@
 package com.example.drawroomback.business.posts.dto;
 
 import com.example.drawroomback.domain.post.Post;
-import jakarta.validation.constraints.NotNull;
-import lombok.Value;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.time.Instant;
 
 /**
  * DTO for {@link Post}
  */
-@Value
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class PostInfo implements Serializable {
-    Integer postId;
-    Integer userId;
-    String userUsername;
-    Integer imageId;
-    byte[] imageData;
-    @NotNull
-    Instant timestamp;
-    @NotNull
-    String status;
-    @NotNull
-    Integer likeCount;
+    private Integer userId;
+    private String username;
+    private String userAvatarImageData;
+    private String postImageData;
+    private String timestamp;
+    private Integer likeCount;
 }

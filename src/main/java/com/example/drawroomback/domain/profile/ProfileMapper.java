@@ -16,6 +16,5 @@ public interface ProfileMapper {
     @Named("imageToString")
     static String imageToString(Image image) {
         return ImageConverter.imageToString(image);
-
     }
 }
