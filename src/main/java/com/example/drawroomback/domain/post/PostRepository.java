@@ -14,7 +14,4 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
     Page<Post> getActivePostsBy(Integer id, String status, Pageable pageable);
 
 
-
-
-
 }

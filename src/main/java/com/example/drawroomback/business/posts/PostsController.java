@@ -1,6 +1,8 @@
 package com.example.drawroomback.business.posts;
 
+
 import com.example.drawroomback.business.posts.dto.PostImage;
+import com.example.drawroomback.business.posts.dto.PostInfoRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;
 import org.springframework.data.domain.PageRequest;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 
@@ -31,6 +34,7 @@ public class PostsController {
     }
 
     @PostMapping("/post")
-    public void addNewPost() {
+    public void addNewPost(@RequestBody PostInfoRequest postInfoRequest) {
+        postsService.addNewPost(postInfoRequest);
     }
 }

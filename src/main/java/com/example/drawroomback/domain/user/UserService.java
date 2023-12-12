@@ -32,4 +32,8 @@ public class UserService {
     public List<User> findAllActiveUsers() {
         return userRepository.findUsersBy(Status.ACTIVE);
     }
+
+    public User getUserBy(Integer userId) {
+        return userRepository.getReferenceById(userId);
+    }
 }
