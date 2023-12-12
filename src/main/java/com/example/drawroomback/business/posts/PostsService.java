@@ -4,6 +4,7 @@ package com.example.drawroomback.business.posts;
 import com.example.drawroomback.business.posts.dto.PostImage;
 import com.example.drawroomback.business.posts.dto.PostInfo;
 import com.example.drawroomback.business.posts.dto.PostInfoRequest;
+import com.example.drawroomback.business.posts.dto.PostInfoResponse;
 import com.example.drawroomback.domain.image.Image;
 import com.example.drawroomback.domain.image.ImageService;
 import com.example.drawroomback.domain.post.Post;

@@ -1,4 +1,4 @@
-package com.example.drawroomback.business.posts;
+package com.example.drawroomback.business.posts.dto;
 
 import com.example.drawroomback.business.posts.dto.PostInfo;
 import lombok.AllArgsConstructor;

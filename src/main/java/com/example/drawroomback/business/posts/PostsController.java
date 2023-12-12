@@ -2,6 +2,7 @@ package com.example.drawroomback.business.posts;
 
 import com.example.drawroomback.business.posts.dto.PostImage;
 import com.example.drawroomback.business.posts.dto.PostInfoRequest;
+import com.example.drawroomback.business.posts.dto.PostInfoResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;
 import org.springframework.data.domain.PageRequest;
