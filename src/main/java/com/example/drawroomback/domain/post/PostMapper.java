@@ -1,6 +1,8 @@
 package com.example.drawroomback.domain.post;
 
+import com.example.drawroomback.business.Status;
 import com.example.drawroomback.business.posts.dto.PostInfo;
+import com.example.drawroomback.business.posts.dto.PostInfoRequest;
 import com.example.drawroomback.domain.image.Image;
 import com.example.drawroomback.util.ImageConverter;
 import com.example.drawroomback.util.InstantConverter;
@@ -9,7 +11,8 @@ import org.mapstruct.*;
 import java.time.Instant;
 import java.util.List;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING,
+        imports = {Instant.class, Status.class})
 public interface PostMapper {
 
     //     @Mapping(source = "", target = "userAvatarImageData")
@@ -34,4 +37,8 @@ public interface PostMapper {
     }
 
 
+    @Mapping(expression = "java(Status.ACTIVE)", target = "status")
+    @Mapping(expression = "java(Instant.now())", target = "timestamp")
+    @Mapping(constant = "0", target = "likeCount")
+    Post toPost(PostInfoRequest postInfoRequest);
 }
