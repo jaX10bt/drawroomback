@@ -14,6 +14,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PostInfo implements Serializable {
+    private Integer postId;
     private Integer userId;
     private String username;
     private String userAvatarImageData;
