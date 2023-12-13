@@ -27,4 +27,7 @@ public class PostService {
         postRepository.save(post);
     }
 
+    public Post deletePostBy(Integer postId) {
+        return postRepository.getReferenceById(postId);
+    }
 }
