@@ -1,6 +1,7 @@
 package com.example.drawroomback.business.posts;
 
 
+import com.example.drawroomback.business.Status;
 import com.example.drawroomback.business.posts.dto.PostImage;
 import com.example.drawroomback.business.posts.dto.PostInfo;
 import com.example.drawroomback.business.posts.dto.PostInfoRequest;
@@ -46,6 +47,12 @@ public class PostsService {
     public void addNewPost(PostInfoRequest postInfoRequest) {
         Image image = createAndSavePostImage(postInfoRequest);
         createAndSavePost(postInfoRequest, image);
+    }
+
+    public void deletePost(Integer postId) {
+        Post post = postService.deletePostBy(postId);
+        post.setStatus(Status.DELETED);
+        postService.saveNewPost(post);
     }
 
     private void createAndSavePost(PostInfoRequest postInfoRequest, Image image) {
@@ -94,6 +101,6 @@ public class PostsService {
     private List<PostInfo> getPostInfos(List<Post> posts) {
         List<PostInfo> postInfos = postMapper.toPostInfos(posts);
         return postInfos;
-    }
 
+    }
 }

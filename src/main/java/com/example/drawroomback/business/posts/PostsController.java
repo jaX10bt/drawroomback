@@ -37,4 +37,9 @@ public class PostsController {
     public void addNewPost(@RequestBody PostInfoRequest postInfoRequest) {
         postsService.addNewPost(postInfoRequest);
     }
+
+    @DeleteMapping("/post")
+    public void deletePost(@RequestParam Integer postId) {
+        postsService.deletePost(postId);
+    }
 }
