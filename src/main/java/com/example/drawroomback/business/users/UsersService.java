@@ -57,4 +57,10 @@ public class UsersService {
         List<User> users = userService.findAllActiveUsers();
         return userMapper.toUserInfos(users);
     }
+
+    public void deleteUser(Integer userId) {
+        User user = userService.deleteUserBy(userId);
+        user.setStatus(Status.DELETED);
+        userService.saveUser(user);
+    }
 }
