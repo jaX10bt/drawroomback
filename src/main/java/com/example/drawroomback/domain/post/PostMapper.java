@@ -17,6 +17,7 @@ public interface PostMapper {
 
     //     @Mapping(source = "", target = "userAvatarImageData")
 
+    @Mapping(source = "id", target = "postId")
     @Mapping(source = "user.id", target = "userId")
     @Mapping(source = "user.username", target = "username")
     @Mapping(source = "image", target = "postImageData", qualifiedByName = "imageToString")
