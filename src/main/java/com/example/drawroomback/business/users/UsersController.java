@@ -32,6 +32,7 @@ public class UsersController {
     }
 
     @DeleteMapping("/user")
+    @Operation(summary = "Kustutab kasutaja, muutes staatuse.")
     public void deleteUser(@RequestParam Integer userId) {
         usersService.deleteUser(userId);
     }

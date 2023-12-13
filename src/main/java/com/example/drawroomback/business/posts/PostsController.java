@@ -39,6 +39,7 @@ public class PostsController {
     }
 
     @DeleteMapping("/post")
+    @Operation(summary = "Kustutab postituse, muutes staatuse.")
     public void deletePost(@RequestParam Integer postId) {
         postsService.deletePost(postId);
     }
