@@ -43,4 +43,9 @@ public class PostsController {
     public void deletePost(@RequestParam Integer postId) {
         postsService.deletePost(postId);
     }
+
+    @PatchMapping("/post/{postId}/like")
+    public void addNewLike(@PathVariable Integer postId) {
+       postsService.addNewLike(postId);
+    }
 }
