@@ -52,12 +52,12 @@ public class PostsService {
     public void deletePost(Integer postId) {
         Post post = postService.deletePostBy(postId);
         post.setStatus(Status.DELETED);
-        postService.saveNewPost(post);
+        postService.savePost(post);
     }
 
     private void createAndSavePost(PostInfoRequest postInfoRequest, Image image) {
         Post post = createPost(postInfoRequest, image);
-        postService.saveNewPost(post);
+        postService.savePost(post);
     }
 
     private Post createPost(PostInfoRequest postInfoRequest, Image image) {
@@ -102,5 +102,17 @@ public class PostsService {
         List<PostInfo> postInfos = postMapper.toPostInfos(posts);
         return postInfos;
 
+    }
+
+    public void addNewLike(Integer postId) {
+        Post post = postService.getPostBy(postId);
+        calculateAndSetNewLikeCount(post);
+        postService.savePost(post);
+    }
+
+    private static void calculateAndSetNewLikeCount(Post post) {
+        Integer currentLikeCount = post.getLikeCount();
+        int newLikeCount = currentLikeCount + 1;
+        post.setLikeCount(newLikeCount);
     }
 }

@@ -13,5 +13,4 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
     @Query("select p from Post p where p.status = ?1 order by p.id desc")
     Page<Post> getActivePostsBy(String status, Pageable pageable);
 
-
 }

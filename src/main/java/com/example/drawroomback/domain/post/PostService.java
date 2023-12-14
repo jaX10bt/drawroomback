@@ -2,7 +2,6 @@ package com.example.drawroomback.domain.post;
 
 
 import com.example.drawroomback.business.Status;
-import com.example.drawroomback.business.posts.dto.PostInfoRequest;
 import jakarta.annotation.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,11 +22,16 @@ public class PostService {
         return postRepository.getActivePostsBy(Status.ACTIVE, pagination);
     }
 
-    public void saveNewPost(Post post) {
+    public void savePost(Post post) {
         postRepository.save(post);
     }
 
     public Post deletePostBy(Integer postId) {
+        return postRepository.getReferenceById(postId);
+    }
+
+
+    public Post getPostBy(Integer postId) {
         return postRepository.getReferenceById(postId);
     }
 }
