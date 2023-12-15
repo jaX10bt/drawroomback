@@ -13,6 +13,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProfileInfo implements Serializable {
+    private String username;
     private Integer profileUserId;
     private String coverData;
     private String avatarData;

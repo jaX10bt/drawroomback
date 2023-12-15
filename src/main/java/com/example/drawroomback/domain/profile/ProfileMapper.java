@@ -10,6 +10,7 @@ import org.mapstruct.*;
 public interface ProfileMapper {
 
 
+    @Mapping(source = "user.username", target = "username")
     @Mapping(source = "user.id", target = "profileUserId")
     @Mapping(source = "avatar", target = "avatarData", qualifiedByName = "imageToString")
     @Mapping(source = "cover", target = "coverData", qualifiedByName = "imageToString")
